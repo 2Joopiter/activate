@@ -11,19 +11,31 @@
 
 <body>
   <!-- _self:해당 탭이 변경되면서 링크 이동, _blank: 새로운 탭으로 이동하면서 링크 이동 -->
-  <a href="https://www.naver.com" target="_self">네이버</a>
+  <!-- <a href="https://www.naver.com" target="_self">네이버</a> -->
+  <a href="#">init</a>
+  <a href="#">init</a>
+  <a href="#">init</a>
 
   <script>
-    //DOM 요소의 속성값 제어
-    //DOM.getAttribute('속성명') : 해당 속성명의 값 가져옴
-    //DOM.setAttribute('속성명','변경할 속성 값'): 해당 속성명의 값을 변경
+    const info = [
+      { url: "https://www.naver.com", target: "_blank", name: "네이버" },
+      { url: "https://www.nate.com", target: "_self", name: "네이트" },
+      { url: "https://www.google.com", target: "_blank", name: "구글" },
+    ];
 
-    const link = document.querySelector('a');
-    console.log(link.getAttribute('href')) // a 요소의 href 속성값을 반환
-    link.setAttribute('href', 'https://www.nate.com');
-    link.setAttribute('target', '_blank');
-    link.innerText = '네이트';
+    const links = document.querySelectorAll('a');
+    info.forEach((data, idx) => {
+      console.log(data.url);
+      console.log(data.target);
+      console.log(data.name);
 
+      const { url, target, name } = data;
+
+      links[idx].setAttribute('href', url);
+      links[idx].setAttribute('target', target)
+      links[idx].innerText = name;
+      console.log('----------');
+    })
 
   </script>
 </body>
