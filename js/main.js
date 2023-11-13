@@ -13,17 +13,18 @@ const main = document.querySelector('main');
 const btns = main.querySelectorAll('li');
 const boxs = main.querySelectorAll('article');
 
+//버튼 클릭 이벤트문
 btns.forEach((btn, idx) => {
 	btn.addEventListener('click', () => {
-		//직전에 모든 요소 초기화
-		btns.forEach((btn) => btn.classList.remove('on'));
-		// 클릭한 순번에 해당하는 버튼만 활성화
+		//activation(btns, idx);
+		//activation(boxs, idx);
+		[btns, boxs].forEach((el) => activation(el, idx));
 	});
 });
 
-boxs.forEach((box, idx) => {
-  btn.addEventListener('click', ()=>{
-    boxs.forEach((btn) => btn.classList.remove('on'));
-    boxs[idx].classList.add
-  })
-})
+//인수로 그룹 선택자와, 순번을 받아서 순번의 요소만 활성화 시키는 함수
+
+function activation(arr, index) {
+	arr.forEach((el) => el.classList.remove('on'));
+	arr[index].classList.add('on');
+}
