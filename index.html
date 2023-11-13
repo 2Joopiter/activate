@@ -10,11 +10,9 @@
 </head>
 
 <body>
-  <!-- _self:해당 탭이 변경되면서 링크 이동, _blank: 새로운 탭으로 이동하면서 링크 이동 -->
-  <!-- <a href="https://www.naver.com" target="_self">네이버</a> -->
-  <a href="#">init</a>
-  <a href="#">init</a>
-  <a href="#">init</a>
+  <nav>
+
+  </nav>
 
   <script>
     const info = [
@@ -23,19 +21,30 @@
       { url: "https://www.google.com", target: "_blank", name: "구글" },
     ];
 
-    const links = document.querySelectorAll('a');
-    info.forEach((data, idx) => {
-      console.log(data.url);
-      console.log(data.target);
-      console.log(data.name);
 
-      const { url, target, name } = data;
+    /*
+    동적으로 DOM 생성하기
+    - 방법1: innerHTML을 이용해서 문자열로 직접 동적 태그 생성 (선택자의 기존 자식 내용을 없애면서 덮어쓰기)
+    */
 
-      links[idx].setAttribute('href', url);
-      links[idx].setAttribute('target', target)
-      links[idx].innerText = name;
-      console.log('----------');
-    })
+    const nav = document.querySelector('nav');
+
+    let tags = '';
+
+    //특정 부모요소 안에 반복적인 DOM요소를 동적 생성하기 위해서는 문자열을 초기화하는 변수를 만들고 +=을 활용해서 반복추가할 태그를 문자열 형태로 계속 쌓아놓음
+    //마지막에 해당 돔 요소에 변수에 있는 반복 태그 문자열을 한번에 꽂아넣음 (덮어쓰기해서 사라지지 못하도록 하나의 덩어리로 만들어주는 것)
+
+    tags += `<a href='${info[0].url}' target='${info[0].target}'>${info[0].name}</a>`;
+    tags += `<a href='${info[1].url}' target='${info[1].target}'>${info[1].name}</a>`;
+    tags += `<a href='${info[2].url}' target='${info[2].target}'>${info[2].name}</a>`;
+
+    console.log(tags)
+    nav.innerHTML = tags;
+
+    /*
+    nav.innerHTML = `<a href='${info[0].url}' target='${info[0].target}'>${info[0].name}</a>`;
+    nav.innerHTML = `<a href='${info[1].url}' target='${info[1].target}'>${info[1].name}</a>`;
+    */
 
   </script>
 </body>
